@@ -3,27 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}"
-<title>Focus Timer</title>
+	<title>Focus Timer</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
 </head>
 <body>
-<header>
-	<h1>Focus Timer</h1>
-	<div class="dropdownIcon" if="dropdownIcon">
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
-
+    <div class="container">
+	<header>
+		<h1>Focus Timer</h1>
+		<div class="dropdownIcon" id="dropdownIcon">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</header>
+	<main>
+		<div class="black-line"></div>
+		{% block content %} 
+		{% endblock %}
+	</main>
+	<footer>
+		<h1>footer</h1>
+    	</footer>
 	<div class="dropdown-content" id="dropdownContent">
-		<h1>Sample Information</h1>
+		<h2>Tasks to do:</h2>
+		<h2>Tasks done:</h2>
 	</div>
-</header>
-	{% block content %} 
-	{% endblock %}
-<footer>
-	<h1>footer</h1>
-</footer>
+    </div>
 <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
 </body>
 </html>

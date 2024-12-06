@@ -1,16 +1,52 @@
+html, body {
+	background-color: #ccffff;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
 header {
-	background-color: #778ca1;
-	color: white;
+	background-color: white;
+	color: black;
 	padding: 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 	text-align: center;
+	position: relative;
+	z-index: 200;
+}
+
+.black-line {
+	position: absolute;
+	width: 100vw;
+	height: 10px;
+	background-color: black;
+	margin: 0;
 }
 
 footer {
-	background-color: blue;
+	background-color: black;
 	color: white;
 	text-align: center;
 	padding: 10px;
 	margin-top: auto;
+	position: relative;
+	z-index: 200;
+}
+
+main {
+	flex-grow: 1;
+	position: relative;
+	z-index: 150;
 }
 
 .dropdownIcon {
@@ -31,16 +67,17 @@ footer {
 }
 
 .dropdown-content {
-	position: fixed;
-	top: 0;
-	left: -300px;
+	position: absolute;
+	top: 75px;
+	left: -400px;
 	width: 300px;
-	height: 100%;
+	height: calc(100% - 75px - 50px);
 	background-color: #f4f4f4;
 	box-shadow: 2px 0 5px rgba(0,0,0,0.2);
 	padding: 20px;
 	transition: left 0.3s ease-in-out;
 	z-index: 100;
+	overflow-y: auto;
 }
 
 .dropdown-content.active {
