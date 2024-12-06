@@ -1,15 +1,32 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: centerl
+	align-items: center;
+}
+
 .image-container {
+	position: relative;
+	background-image: url('../static/img/clock.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 1500px;
 	height: auto;
-	overflow: hidden;
 }
 
-img {
-	object-fit: contain;
-	object-position: center center;
-	width: 100%;
-	height: auto;
+.countdown-timer {
+	position: absolute;
+	color: white;
+	font-size: 3rem;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#timer {
+	margin: 0;
 }
