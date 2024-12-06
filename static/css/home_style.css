@@ -1,22 +1,14 @@
-html, body {
-	height: 100%;
-	margin: 0;
-	display: flex;
-	justify-content: centerl
-	align-items: center;
-}
-
 .image-container {
 	position: relative;
-	background-image: url('../static/img/clock.png');
+	width: 600px;
+	height: 600px;
+	background-image: url('../img/clock.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 1500px;
-	height: auto;
 }
 
 .countdown-timer {
@@ -28,5 +20,5 @@ html, body {
 }
 
 #timer {
-	margin: 0;
+	margin; 0;
 }

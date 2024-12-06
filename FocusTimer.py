@@ -7,7 +7,7 @@ def home():
 
 @app.route('/account/')
 def account():
-	return render_template('account.html')
+	return render_template('noAccount.html')
 
 @app.route('/account/register/')
 def register():

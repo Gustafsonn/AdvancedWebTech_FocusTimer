@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Focus Timer</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+	{% block extra_css %}
+	{% endblock %}
 </head>
 <body>
     <div class="container">
@@ -16,13 +18,19 @@
 			<div></div>
 		</div>
 	</header>
-	<div class="black-line"></div>
+	<nav class="nav-bar">
+		<ul class="nav-list">
+			<li><a href="{{ url_for('home') }}">Home</a></li>
+			<li><a href="{{ url_for('account') }}">Account</a></li>
+			<li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+		</ul>
+	</nav>
 	<main>
 		{% block content %} 
 		{% endblock %}
 	</main>
 	<footer>
-		<h1>footer</h1>
+		<h1>Current Focus:</h1>
     	</footer>
 	<div class="dropdown-content" id="dropdownContent">
 		<h2>Tasks to do:</h2>

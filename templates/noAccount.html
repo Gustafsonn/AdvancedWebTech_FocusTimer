@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>no account is registered</p>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/noAccount_style.css') }}">
+{% endblock %}
