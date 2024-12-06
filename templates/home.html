@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<p>This is where the clock will go</p>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<link rel"stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+
+<p>This is where the clock will go</p>
+<div class="image-container">
+	<img src="../static/img/clock.png" alt="the timer">
+</div>
 {% endblock %}
