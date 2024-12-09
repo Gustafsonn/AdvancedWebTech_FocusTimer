@@ -47,13 +47,21 @@ def get_tasks(task_list_id):
 	if not is_logged_in():
 		return jsonify({"error": "Unauthorized access"}), 401
 
-	session['current_task_list_id'] = task_list_id
-
 	user_id = session['user_id']
-	task_list = TaskList.query.filter_by(id=task_list_id, user_id=user_id).first()
-	if not task_list:
-		return jsonify({"error": "Task list not found"}), 404
 
-	tasks = [{"task": t, "completed": False} for t in task_list.tasks]
+	if request.method == 'POST':
+		session['current_task_list_id'] = task_list_id
+		return jsonify({"message": "Task list is set"}), 200
+	
+	current_task_list_id = session.get('current_task_list_id')
 
-	return jsonify({"tasks": tasks, "title": task_list.title})
+	if current_task_list_id:
+		task_list = TaskList.query.filter_by(id=current_task_list_id, user_id=user_id).first()
+
+		if not task_list:
+			return jsonify({"error": "No task list found"}), 404
+
+		tasks = [{"task": t, "completed": False} for t in task_list.tasks]
+		return jsonify({"tasks": tasks, "title": task_list.title})
+
+	return jsonify({"error": "No task list has been selected from tasks"}), 400

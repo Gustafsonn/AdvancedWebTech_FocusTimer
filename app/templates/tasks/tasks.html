@@ -15,7 +15,7 @@
 	{% endfor %}
 </select>
 
-<div id="taskListContainer">
+<div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}">
 	<h3 id="taskListTitle">Tasks</h3>
 	<ul id="taskList"></ul>
 </div>
