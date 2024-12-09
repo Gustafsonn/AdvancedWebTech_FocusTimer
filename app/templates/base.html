@@ -32,9 +32,11 @@
 	<footer>
 		<h1>Current Focus:</h1>
     	</footer>
-	<div class="dropdown-content" id="dropdownContent">
+	<div class="dropdown-content" id="dropdownContent" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}">
 		<h2>Tasks to do:</h2>
+		<ul id="taskListToDo"></ul>
 		<h2>Tasks done:</h2>
+		<ul id="taskListDone"></ul>
 	</div>
     </div>
     <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>

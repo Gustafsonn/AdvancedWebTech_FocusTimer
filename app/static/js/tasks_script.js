@@ -69,3 +69,9 @@ window.onload = async function() {
 		}
 	}
 };
+
+const showTaskInfo = document.getElementById('showtaskInfoButton');
+
+showTaskInfo.assEventListener('click', () => {
+	location.reload();
+});
