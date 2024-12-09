@@ -4,7 +4,6 @@ from .routes.account import account_bp
 from .routes.tasks import tasks_bp
 from .routes.general import general_bp
 from .config import Config
-from .models import db
 
 def create_app():
 	app = Flask(__name__)

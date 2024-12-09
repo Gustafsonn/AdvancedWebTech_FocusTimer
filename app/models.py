@@ -12,4 +12,4 @@ class TaskList(db.Model):
 	title = db.Column(db.String(120), nullable=False)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	user = db.relationship('User', backref=db.backref('task_lists', lazy=True))
-	tasks = db.Column(db.PickleType)
+	tasks = db.Column(db.PickleType, nullable=False)

@@ -21,7 +21,7 @@
 	<nav class="nav-bar">
 		<ul class="nav-list">
 			<li><a href="{{ url_for('general.home') }}">Home</a></li>
-			<li><a href="{{ url_for('account.login') }}">Account</a></li>
+			<li><a href="{{ url_for('account.account_details') }}">Account</a></li>
 			<li><a href="{{ url_for('tasks.tasks') }}">Tasks</a></li>
 		</ul>
 	</nav>
@@ -38,5 +38,7 @@
 	</div>
     </div>
     <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
+    {% block extra_js %}
+    {% endblock %}
 </body>
 </html>

@@ -1,4 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+<a href="{{ url_for('tasks.new_task_list') }}" class="new_task_button">New Task</a>
+<br><br>
+
+<label for="taskListSelect">Select Task List</label>
+<select id="taskListSelect">
+	<option value="">-- Select Task List --</option>
+	{% for task_list in task_lists %}
+		<option value="{{ task_list.id }}"
+				{% if task_list.id == session.get('current_task_list_id') %} selected {% endif %}>
+			{{ task_list.title }}
+		</option>
+	{% endfor %}
+</select>
+
+<div id="taskListContainer">
+	<h3 id="taskListTitle">Tasks</h3>
+	<ul id="taskList"></ul>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/tasks_script.js') }}"></script>
 {% endblock %}
