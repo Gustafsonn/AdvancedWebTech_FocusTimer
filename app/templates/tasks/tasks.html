@@ -15,15 +15,12 @@
 	{% endfor %}
 </select>
 
-<button id="showTaskInfoButton">Show tasks</button>
-
 <div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}">
-	<h3 id="taskListTitle">Tasks</h3>
-	<ul id="taskList"></ul>
+	<h2 id="taskListTitle">Tasks</h2>
+	<h3>Tasks to do:</h3>
+	<ul id="taskListToDo"></ul>
+	<h3>Tasks done:</h3>
+	<ul id="tasksListDone"></ul>
 </div>
 
-{% endblock %}
-
-{% block extra_js %}
-<script src="{{ url_for('static', filename='js/tasks_script.js') }}"></script>
 {% endblock %}
