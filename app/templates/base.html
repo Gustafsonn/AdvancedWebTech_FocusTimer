@@ -33,12 +33,12 @@
 		<h1>Current Focus: select a task</h1>
 		<button id="taskCompleted">|Task Complete|</button>
     	</footer>
-	<div class="dropdown-content" id="dropdownContent">
-		<h2 id="taskListTitle">Tasks</h2>
+	<div class="dropdown-content" id="dropdownContent" data-section="dropdown">
+		<h2 class="taskListTitle">Tasks</h2>
 		<h3>Tasks to do:</h3>
-		<ul id="taskListToDo"></ul>
+		<ul class="taskListToDo"></ul>
 		<h3>Tasks done:</h3>
-		<ul id="taskListDone"></ul>
+		<ul class="taskListDone"></ul>
 	</div>
     </div>
     <script src="{{ url_for('static', filename='js/tasks_script.js') }}"></script>

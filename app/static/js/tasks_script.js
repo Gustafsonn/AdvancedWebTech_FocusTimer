@@ -65,16 +65,23 @@ document.getElementById('taskCompleted').addEventListener("click", async functio
 
 
 async function displayTasks(taskListId) {
-	const taskListToDo = document.getElementById("taskListToDo");
-	const taskListDone = document.getElementById("taskListDone");
-	const taskListTitle = document.getElementById("taskListTitle");
+	const sections = document.querySelectorAll('[data-section]');
 
-	taskListToDo.innerHTML = "";
-	taskListDone.innerHTML = "";
-	taskListTitle.textContent = "Tasks";
+	sections.forEach(section => {
+		const taskListToDo = section.querySelector(".taskListToDo");
+		const taskListDone = section.querySelector(".taskListDone");
+		const taskListTitle = section.querySelector("h2");
+
+		taskListToDo.innerHTML = "";
+		taskListDone.innerHTML = "";
+		taskListTitle.textContent = "Tasks";
+	});
 
 	if (!taskListId) {
-		taskListTitle.textContent = "No task list selected";
+		sections.forEach(section => {
+			const taskListTitle = section.querySelector(".taskListTitle");
+			if (taskListTitle) taskListTitle.textContent = "No task list selected";
+		});
 		return;
 	}
 
@@ -88,25 +95,35 @@ async function displayTasks(taskListId) {
 		const data = await response.json();
 
 		if (data.error) {
-			taskListToDo.innerHTML = `<li>${data.error}</li>`;
+			sections.forEach(section => {
+				taskListToDo = section.querySelector("h2");
+				if (taskListToDo) taskListToDo.innerHTML = `<li>${data.error}</li>`;
+			});
 			return;
 		}
 
-		taskListTitle.textContent = `Tasks for: ${data.title}`;
-		data.tasks.forEach(task => {
-			const li = document.createElement("li");
-			li.textContent = task.task;
+		sections.forEach(section => {
+			const taskListToDo = section.querySelector(".taskListToDo");
+			const taskListDone = section.querySelector(".taskListDone");
+			const taskListTitle = section.querySelector("h2");
 
-			if (task.completed) {
-				li.style.textDecoration = "line-through";
-				taskListDone.appendChild(li);
-			} else {
-				taskListToDo.appendChild(li);
-			}
+			if (taskListTitle) taskListTitle.textContent = `Tasks for: ${data.title}`;
+	
+
+			data.tasks.forEach(task => {
+				const li = document.createElement("li");
+				li.textContent = task.task;
+
+				if (task.completed) {
+					li.style.textDecoration = "line-through";
+					if (taskListDone) taskListDone.appendChild(li);
+				} else {
+					if (taskListToDo) taskListToDo.appendChild(li);
+				}
+			});
 		});
 	} catch (error) {
 		console.error("Error loading tasks:", error);
-		taskListToDo.innerHTML = '<li>Error loading tasks</li>';
 	}
 }
 
@@ -128,14 +145,11 @@ async function displayNextTask(taskListId) {
 
 		footer.innerHTML = "";
 
-		if (data.error) {
-			footer.innerHTML += `<p>${data.error}</p>`;
-		} else if (data.task) {
+		if (data.task) {
 			footer.textContent = `CurrentFocus: ${data.task}`;
 		}
 	} catch (error) {
 		console.error("Error loading next task:", error);
-		footer.innerHTML += '<p>Error loading next task</p>';
 	}
 }
 

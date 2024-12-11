@@ -15,12 +15,12 @@
 	{% endfor %}
 </select>
 
-<div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}">
-	<h2 id="taskListTitle">Tasks</h2>
+<div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}" data-section="page">
+	<h2 class="taskListTitle">Tasks</h2>
 	<h3>Tasks to do:</h3>
-	<ul id="taskListToDo"></ul>
+	<ul class="taskListToDo"></ul>
 	<h3>Tasks done:</h3>
-	<ul id="tasksListDone"></ul>
+	<ul class="taskListDone"></ul>
 </div>
 
 {% endblock %}
