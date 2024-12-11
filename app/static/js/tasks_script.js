@@ -28,6 +28,41 @@ if  (taskListSelect) {
 	});
 }
 
+document.getElementById('taskCompleted').addEventListener("click", async function () {
+	const footer = document.querySelector("footer h1");
+	const currentTask = footer.textContent.replace("CurrentFocus: ", "");
+
+	if (!currentTask || currentTask === "select a task") {
+		alert("No task selected to mark as complete.");
+		return;
+	}
+
+	try {
+		const response = await fetch('/tasks/api/complete_task', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ task: currentTask })
+		});
+
+		const data = await response.json();
+
+		if (response.ok) {
+			alert(data.message);
+
+			const currentTaskListId = sessionStorage.getItem('current_task_list_id');
+			if (currentTaskListId) {
+				await displayTasks(currentTaskListId);
+				await displayNextTask(currentTaskListId);
+			}
+		} else {
+			alert(data.error || "Failed to complete task.");
+		}
+	} catch (error) {
+		console.error("Error completing task:", error);
+		alert("An error occurred while completing the taskk.");
+	}
+});
+
 
 async function displayTasks(taskListId) {
 	const taskListToDo = document.getElementById("taskListToDo");

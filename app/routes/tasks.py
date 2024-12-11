@@ -104,3 +104,32 @@ def update_task_list():
 		return redirect(url_for('tasks.tasks'))
 	else:
 		return jsonify({"error": "No task list ID provided"}), 400
+
+
+@tasks_bp.route('/api/complete_task', methods=['POST'])
+def complete_task():
+	if not is_logged_in():
+		return jsonify({"error": "Unauthorized access"}), 401
+
+	task_list_id = session.get('current_task_list_id')
+	task_description = request.json.get('task')
+
+	if not task_list_id or not task_description:
+		return jsonify({"error": "Invalid request"}), 400
+
+	try:
+		task_list = TaskList.query.filter_by(id=task_list_id, user_id=session['user_id']).first()
+		if not task_list:
+			return jsonify({"error": "Task list not found"}), 404
+
+		task = next((t for t in task_list.tasks if t.task == task_description and not t.completed), None)
+		if not task:
+			return jsonify({"error": "Task not found"}), 404
+
+		task.completed = True
+		db.session.commit()
+		return jsonify({"message": "Task completed"}), 200
+
+	except Exception as e:
+		print(f"Error occured: {e}")
+		return jsonify({"error": "server error"}), 500
