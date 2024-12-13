@@ -74,6 +74,7 @@ main {
 	position: relative;
 	z-index: 150;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -104,10 +105,16 @@ main {
 	height: calc(100% - 75px - 50px);
 	background-color: #f4f4f4;
 	box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-	padding: 20px;
+	padding: 150px 20px 20px 20px;
 	transition: left 0.3s ease-in-out;
 	z-index: 100;
 	overflow-y: auto;
+}
+
+.dropdown-content h2,
+.dropdown-content h3,
+.dropdown-content ul {
+	margin-top: 0;
 }
 
 .dropdown-content.active {

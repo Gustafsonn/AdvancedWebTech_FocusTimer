@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST" class="new-list-form">
-	<label for="title">Task List Title</label>
-	<input type="text" id="title" name="title" required><br><br>
+<div class="form-container">
+	<form method="POST" class="new-list-form">
+		<label for="title">Task List Title</label>
+		<input type="text" id="title" name="title" required><br><br>
 
-	<h3>Tasks</h3>
-	<div id="tasks">
-		<div class="task-item">
-			<label for="task1">Task Description</label>
-			<input type="text" id="task1" name="tasks[]" required><br><br>
+		<h3>Tasks</h3>
+		<div id="tasks">
+			<div class="task-item">
+				<label for="task1">Task Description</label>
+				<input type="text" id="task1" name="tasks[]" required><br><br>
+			</div>
 		</div>
-	</div>
 
-	<button type="button" onclick="addTask()">Add Another Task</button><br><br>
-	<button type="submit">Create Task List</button>
-</form>
+		<button type="button" onclick="addTask()">Add Another Task</button><br><br>
+		<button type="submit">Create Task List</button>
+	</form>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/newTaskList_script.css') }}">
 {% endblock %}
 
 {% block extra_js %}

@@ -1,26 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="{{ url_for('tasks.new_task_list') }}" class="new_task_button">New Task</a>
-<br><br>
+<div class="task-page-container">
+	<a href="{{ url_for('tasks.new_task_list') }}" class="new_task_button">New Task</a>
 
-<label for="taskListSelect">Select Task List</label>
-<select id="taskListSelect">
-	<option value="">-- Select Task List --</option>
-	{% for task_list in task_lists %}
-		<option value="{{ task_list.id }}"
-				{% if task_list.id == session.get('current_task_list_id') %} selected {% endif %}>
-			{{ task_list.title }}
-		</option>
-	{% endfor %}
-</select>
+	<label for="taskListSelect">Select Task List</label>
+	<select id="taskListSelect">
+		<option value="">-- Select Task List --</option>
+		{% for task_list in task_lists %}
+			<option value="{{ task_list.id }}"
+					{% if task_list.id == session.get('current_task_list_id') %} selected {% endif %}>
+				{{ task_list.title }}
+			</option>
+		{% endfor %}
+	</select>
 
-<div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}" data-section="page">
-	<h2 class="taskListTitle">Tasks</h2>
-	<h3>Tasks to do:</h3>
-	<ul class="taskListToDo"></ul>
-	<h3>Tasks done:</h3>
-	<ul class="taskListDone"></ul>
+	<div id="taskListContainer" data-current-task-list-id="{{ session.get('current_task_list_id', '') }}" data-section="page">
+		<h2 class="taskListTitle">Tasks</h2>
+		<h3>Tasks to do:</h3>
+		<ul class="taskListToDo"></ul>
+		<h3>Tasks done:</h3>
+		<ul class="taskListDone"></ul>
+	</div>
 </div>
+{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tasks_style.css') }}">
 {% endblock %}

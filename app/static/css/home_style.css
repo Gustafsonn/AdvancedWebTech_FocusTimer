@@ -22,3 +22,34 @@
 #timer {
 	margin; 0;
 }
+
+.home-container button {
+	background-color: yellow;
+	border: 2px solid black;
+	padding: 10px 20px;
+	border-radius: 4px;
+	margin: 10px auto;
+	display: block;
+	cursor: pointer;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.home-container button:hover {
+	background-color: black;
+	color: yellow;
+	border-color: yellow;
+}
+
+.image-container + button {
+	margin-top: 20px;
+}
+
+.image-container + button,
+.image-container + button ~ button {
+	display: block;
+	width: 200px;
+	margin: 10px auto;
+}

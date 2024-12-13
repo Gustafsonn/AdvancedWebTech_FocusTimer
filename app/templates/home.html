@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="image-container">
-	<div class="countdown-timer">
-		<div id="timer">00:00</div>
+<div class="home-container">
+	<div class="image-container">
+		<div class="countdown-timer">
+			<div id="timer">00:00</div>
+		</div>
 	</div>
+	<button id="start">Start</button>
+	<button id="stop">Stop</button>
+	<button id="reset">Reset</button>
+	<button id="toggle">Switch to Stopwatch</button>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/timer_script.js') }}"></script>
 {% endblock %}
